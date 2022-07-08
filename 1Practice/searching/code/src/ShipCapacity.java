@@ -17,9 +17,7 @@ public class ShipCapacity {
         while(s < e){
             int mid = s + (e-s)/2;
 
-            int daysAccToMid = daysNeeded(arr, mid);
-
-            if(daysAccToMid <= days){
+            if(canBeShipped(arr, mid, days)){
                 e = mid;
             } else{
                 s = mid +1;
@@ -28,7 +26,7 @@ public class ShipCapacity {
         return s;
     }
 
-    static int daysNeeded(int[] arr, int shipCapacity){
+    static boolean canBeShipped(int[] arr, int shipCapacity, int actualDays){
         int daysNeed = 1;
         int weight = 0;
 
@@ -40,6 +38,6 @@ public class ShipCapacity {
                 weight += weightOfPackage;
             }
         }
-        return daysNeed;
+        return daysNeed <= actualDays;
     }
 }
